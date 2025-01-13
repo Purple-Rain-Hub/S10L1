@@ -15,6 +15,30 @@ class BookList extends Component {
     });
   };
 
+  showCard = (b) => {
+    if (b.asin == this.state.selectedAsin) {
+      return (
+        <Col xs={4} key={b.asin}>
+          <SingleBook
+            book={b}
+            bookListState={this.bookListState}
+            selected={true}
+          />
+        </Col>
+      );
+    } else {
+      return (
+        <Col xs={4} key={b.asin}>
+          <SingleBook
+            book={b}
+            bookListState={this.bookListState}
+            selected={false}
+          />
+        </Col>
+      );
+    }
+  };
+
   render() {
     return (
       <>
@@ -39,11 +63,7 @@ class BookList extends Component {
                 .filter((b) =>
                   b.title.toLowerCase().includes(this.state.searchQuery)
                 )
-                .map((b) => (
-                  <Col xs={12} md={4} key={b.asin}>
-                    <SingleBook book={b} bookListState={this.bookListState} />
-                  </Col>
-                ))}
+                .map((b) => this.showCard(b))}
             </Row>
           </Col>
           <Col>
@@ -52,7 +72,6 @@ class BookList extends Component {
             ) : (
               <CommentArea asin={this.state.selectedAsin} />
             )}
-            {console.log("renderizzandu", this.state.selectedAsin)}
           </Col>
         </Row>
       </>
