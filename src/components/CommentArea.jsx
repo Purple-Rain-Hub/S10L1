@@ -16,7 +16,7 @@ const CommentArea = (props) => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    async () => {
+    async function funcEffect() {
       try {
         let response = await fetch(
           "https://striveschool-api.herokuapp.com/api/comments/" + props.asin,
@@ -45,8 +45,9 @@ const CommentArea = (props) => {
         setIsLoading(false);
         setIsError(true);
       }
-    };
-  }, [props]);
+    }
+    funcEffect();
+  }, [props.asin]);
 
   return (
     <div className="text-center">
