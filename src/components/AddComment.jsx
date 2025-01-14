@@ -11,7 +11,7 @@ const AddComment = (props) => {
   // }
 
   const [comment, setComment] = useState({
-    comments: "",
+    comment: "",
     rate: 1,
     elementId: props.asin,
   });
@@ -38,7 +38,7 @@ const AddComment = (props) => {
       if (response.ok) {
         alert("Recensione inviata!");
         setComment({
-          comments: "",
+          comment: "",
           rate: 1,
           elementId: props.asin,
         });
@@ -58,11 +58,11 @@ const AddComment = (props) => {
           <Form.Control
             type="text"
             placeholder="Inserisci qui il testo"
-            value={comment.comments}
+            value={comment.comment}
             onChange={(e) =>
               setComment({
                 ...comment,
-                comments: e.target.value,
+                comment: e.target.value,
               })
             }
           />
