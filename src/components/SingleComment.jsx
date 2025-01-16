@@ -25,7 +25,7 @@ const SingleComment = ({ comment }) => {
 
   return (
     <ListGroup.Item data-testid="comment element">
-      {comment.comment}
+      {comment.comment} {comment.rate}
       <Button
         variant="danger"
         className="ms-2"

@@ -44,10 +44,17 @@ describe("testing cards behavior", () => {
     fireEvent.click(card[1]);
     expect(card[0]).not.toHaveProperty(["style", "border"], "3px solid red");
   });
-  it("doesn't show any comment on pageloading", () => {
+  it("doesn't show comments when no card is selected", () => {
     render(<BookList books={fantasy} />);
     const comment = screen.queryAllByTestId("comment element");
     expect(comment.length).toBe(0);
+  });
+  it("shows ratings when book is selected", async () => {
+    render(<BookList books={fantasy} />);
+    const card = screen.getAllByTestId("card element2");
+    fireEvent.click(card[0]);
+    const comment = await screen.findAllByTestId("comment element");
+    expect(comment.length).toBeGreaterThan(0);
   });
 });
 
