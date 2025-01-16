@@ -31,11 +31,18 @@ describe("testing cards behavior", () => {
     expect(cards.length).toBe(1);
     expect(cards2.length).toBe(3);
   });
-  it("add class to selected cards", () => {
+  it("add red border to selected cards", () => {
     render(<BookList books={fantasy} />);
     const card = screen.getAllByTestId("card element2");
     fireEvent.click(card[0]);
-    expect(card[0]).toHaveProperty(["style, border"], "3px solid red");
+    expect(card[0]).toHaveProperty(["style", "border"], "3px solid red");
+  });
+  it("removes red border when selecting another card", () => {
+    render(<BookList books={fantasy} />);
+    const card = screen.getAllByTestId("card element2");
+    fireEvent.click(card[0]);
+    fireEvent.click(card[1]);
+    expect(card[0]).not.toHaveProperty(["style", "border"], "3px solid red");
   });
 });
 
