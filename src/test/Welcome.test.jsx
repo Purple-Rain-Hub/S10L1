@@ -44,6 +44,11 @@ describe("testing cards behavior", () => {
     fireEvent.click(card[1]);
     expect(card[0]).not.toHaveProperty(["style", "border"], "3px solid red");
   });
+  it("doesn't show any comment on pageloading", () => {
+    render(<BookList books={fantasy} />);
+    const comment = screen.queryAllByTestId("comment element");
+    expect(comment.length).toBe(0);
+  });
 });
 
 describe("testing CommentArea mounting", () => {
