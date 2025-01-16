@@ -8,6 +8,7 @@ const SingleBook = (props) => {
           props.bookListState(props.book.asin);
         }}
         style={{ border: props.selected ? "3px solid red" : "none" }}
+        data-testid="card element2"
       >
         <Card.Img variant="top" src={props.book.img} />
         <Card.Body>

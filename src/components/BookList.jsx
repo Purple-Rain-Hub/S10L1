@@ -22,13 +22,13 @@ const BookList = (props) => {
   const showCard = (b) => {
     if (b.asin == selectedAsin) {
       return (
-        <Col xs={4} key={b.asin}>
+        <Col xs={4} key={b.asin} data-testid="card element">
           <SingleBook book={b} bookListState={bookListState} selected={true} />
         </Col>
       );
     } else {
       return (
-        <Col xs={4} key={b.asin}>
+        <Col xs={4} key={b.asin} data-testid="card element">
           <SingleBook book={b} bookListState={bookListState} selected={false} />
         </Col>
       );
@@ -58,7 +58,9 @@ const BookList = (props) => {
           </Row>
           <Row className="g-2 mt-3">
             {props.books
-              .filter((b) => b.title.toLowerCase().includes(searchQuery))
+              .filter((b) =>
+                b.title.toLowerCase().includes(searchQuery.toLowerCase())
+              )
               .map((b) => showCard(b))}
           </Row>
         </Col>
